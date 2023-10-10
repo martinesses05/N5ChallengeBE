@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>d8a135e7-9b12-4b2d-b687-692275b4e306</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\N5.Permissions.Core.BL\N5.Permissions.Core.BL.csproj" />
+    <ProjectReference Include="..\N5.Permissions.Core.Contracts\N5.Permissions.Core.Contracts.csproj" />
+    <ProjectReference Include="..\N5.Permissions.Core.DAL\N5.Permissions.Core.DAL.csproj" />
+    <ProjectReference Include="..\N5.Permissions.Core.DTOs\N5.Permissions.Core.DTOs.csproj" />
+  </ItemGroup>
+
+</Project>
