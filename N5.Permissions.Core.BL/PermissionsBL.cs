@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using N5.Permissions.Core.Contracts;
 using N5.Permissions.Core.DTOs;
 using N5.Permissions.Core.DTOs.Common;
@@ -20,7 +21,7 @@ namespace N5.Permissions.Core.BL
               
         public PagedListResponse<PermissionDTO> Get(PermissionsFilter filter)
         {
-            var query = _dbContext.Permissions
+            var query = _dbContext.Permissions.Include(e=>e.PermissionType)
                 .OrderBy(e => e.EmployeeName)
                 .ThenBy(e => e.EmployeeSurname)
                 .AsQueryable();
@@ -46,7 +47,7 @@ namespace N5.Permissions.Core.BL
 
         public PermissionDTO GetById(int id)
         {
-            var entity = _dbContext.Permissions.Single(e => e.Id == id);
+            var entity = _dbContext.Permissions.Include(e => e.PermissionType).Single(e => e.Id == id);
             return _mapper.Map<Entities.Permission, DTOs.PermissionDTO>(entity);
         }
 

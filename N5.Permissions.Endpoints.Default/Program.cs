@@ -17,6 +17,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<AppDBContext>(options => options.UseSqlServer(AppSettings.Settings.ConnectionString).EnableSensitiveDataLogging(true));
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddCors(policyBuilder =>
+    policyBuilder.AddPolicy("AllowAll", builder =>
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader())
+);
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -25,6 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowAll");
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
